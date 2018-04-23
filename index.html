@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Pure React Samples</title>
+</head>
+<body>
+ <!-- Целевой контейнер -->
+ <div id="react-container"></div>
+ <!-- Библиотеки React и ReactDOM -->
+ <script src="https://unpkg.com/react@15.4.2/dist/react.js"></script>
+ <script src="https://unpkg.com/react-dom@15.4.2/dist/react-dom.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.js"></script>
+ <script type="text/babel">
+    const { render } = ReactDOM;
+    const elem = document.getElementById('react-container');
+
+    var data = [
+        {
+            "name": "Baked Salmon",
+            "ingredients": [
+                { "name": "Salmon", "amount": 1, "measurement": "l lb" },
+                { "name": "Pine Nuts", "amount": 1, "measurement": "cup" },
+                { "name": "Butter Lettuce", "amount": 2, "measurement": "cups" },
+                { "name": "Yellow Squash", "amount": 1, "measurement": "med" },
+                { "name": "Olive Oil", "amount": 0.5, "measurement": "cup" },
+                { "name": "Garlic", "amount": 3, "measurement": "cloves" }
+            ],
+            "steps": [
+                "Preheat the oven to 350 degrees.",
+                "Spread the olive oil around a glass baking dish.",
+                "Add the salmon, garlic, and pine nuts to the dish.",
+                "Bake for 15 minutes.",
+                "Add the yellow squash and put back in the oven for 30 mins.",
+                "Remove from oven and let cool for 15 minutes. Add the lettuce and serve."
+            ]
+        },
+        {
+            "name": "Fish Tacos",
+            "ingredients": [
+                { "name": "Whitefish", "amount": 1, "measurement": "l lb" },
+                { "name": "Cheese", "amount": 1, "measurement": "cup" },
+                { "name": "Iceberg Lettuce", "amount": 2, "measurement": "cups" },
+                { "name": "Tomatoes", "amount": 2, "measurement": "large"},
+                { "name": "Tortillas", "amount": 3, "measurement": "med" }
+            ],
+            "steps": [
+                "Cook the fish on the grill until hot.",
+                "Place the fish on the 3 tortillas.",
+                "Top them with lettuce, tomatoes, and cheese."
+            ]
+        }
+    ];
+
+    // Функциональный компонент, не имеющий состояния, предназначенный
+    // для отдельно взятого рецепта приложения Recipes
+    const Recipe = ({name, ingredients, steps}) =>
+        <section id={name.toLowerCase().replace(/ /g, "-")}>
+            <h1>{name}</h1>
+            <ul className="ingredients">
+                {ingredients.map((ingredient, i) => 
+                    <li key={i}>{ingredient.name}</li>
+                )}
+            </ul>
+            <section className="instructions">
+                <h2>Cooking Instructions</h2>
+                {steps.map((step, i) =>
+                    <p key={i}>{step}</p>
+                )}
+            </section>
+        </section>
+
+    // Функциональный компонент, не имеющий состояния,
+    // предназначенный для меню из рецептов
+    const Menu = ({ title, recipes }) =>
+        <article>
+            <header>
+                <h1>{title}</h1>
+            </header>
+            <div className="recipes">
+                {recipes.map((recipe, i) =>
+                    <Recipe key={i} {...recipe} />
+                )}
+            </div>
+        </article>
+
+    render(
+        <Menu recipes={data} title="Delicious Recipes"/>,
+        elem
+    );
+
+    /* const { render } = ReactDOM;
+
+    const elem = document.getElementById('react-container');
+
+    const items1 = [
+        "001 lb Salmon",
+        "001 cup Pine Nuts",
+        "002 cups Butter Lettuce",
+        "001 Yellow Squash",
+        "001/2 cup Olive Oil",
+        "003 cloves of Garlic"
+    ]
+
+    const IngredientsList = ({items}) =>
+        React.DOM.ul({'className': 'ingredients'},
+            items.map((ingredient, i) => 
+                React.DOM.li({'key': i}, ingredient)
+            )
+        )
+    var name = "HEADER"
+
+    const r = React.createElement(
+        "section",
+        {'id': 'myId'},
+        React.DOM.h1({className: 'CLASS'}, name),
+        React.createElement(IngredientsList, {items: items1}, null),
+        React.createElement(
+            'section',
+            {'className': 'instructions'},
+            React.createElement("h2", null, "Cooking Instructions"),
+            React.createElement("p", null, "Preheat the oven to 350 degrees."),
+            React.createElement("p", null, "Spread the olive oil around a glass baking dish."),
+            React.createElement("p", null, "Add the salmon, garlic, and pine..."),
+            React.createElement("p", null, "Bake for 15 minutes."),
+            React.createElement("p", null, "Add the yellow squash and put..."),
+            React.createElement("p", null, "Remove from oven and let cool for 15 ....")
+        )
+    );
+
+    console.log(r);
+
+    render(
+        r,
+        elem
+    ); */
+
+    /* const elem = document.getElementById('react-container');
+
+    const items = [
+        "1 lb Salmon",
+        "1 cup Pine Nuts",
+        "2 cups Butter Lettuce",
+        "1 Yellow Squash",
+        "1/2 cup Olive Oil",
+        "3 cloves of Garlic"
+    ]
+
+    const items1 = [
+        "001 lb Salmon",
+        "001 cup Pine Nuts",
+        "002 cups Butter Lettuce",
+        "001 Yellow Squash",
+        "001/2 cup Olive Oil",
+        "003 cloves of Garlic"
+    ]
+
+    // const classList = React.createClass({
+    //     displayName: "ingredientsList",
+    //     renderListItem(ingredient, i) {
+    //         return React.createElement('li', {'key': i}, ingredient);
+    //     },
+    //     render() {
+    //         return React.createElement(
+    //             'ul',
+    //             {'className': 'ingredients'},
+    //             this.props.items.map(this.renderListItem)
+    //         )
+    //     }
+    // });
+
+    const IngredientsList = ({items}) =>
+        React.createElement('ul', {'className': 'ingredients'},
+            items.map((ingredient, i) => 
+                React.createElement('li', {'key': i}, ingredient)
+            )
+        )
+
+    // class IngredientsList extends React.Component {
+    //     renderListItem(ingredient, i) {
+    //         return React.createElement('li', {'key': i}, ingredient);
+    //     }
+    //     render() {
+    //         return React.createElement(
+    //             'ul',
+    //             {'className': 'ingredients'},
+    //             this.props.items.map(this.renderListItem)
+    //         )
+    //     }
+    // }
+
+    const r = React.createElement(
+        "section",
+        {'id': 'myId'},
+        React.createElement('h1', null, 'Header'),
+        React.createElement(IngredientsList, {items: items1}, null),
+        React.createElement(
+            'section',
+            {'className': 'instructions'},
+            React.createElement("h2", null, "Cooking Instructions"),
+            React.createElement("p", null, "Preheat the oven to 350 degrees."),
+            React.createElement("p", null, "Spread the olive oil around a glass baking dish."),
+            React.createElement("p", null, "Add the salmon, garlic, and pine..."),
+            React.createElement("p", null, "Bake for 15 minutes."),
+            React.createElement("p", null, "Add the yellow squash and put..."),
+            React.createElement("p", null, "Remove from oven and let cool for 15 ....")
+        )
+    );
+
+    console.log(r);
+
+    ReactDOM.render(r, elem); */
+
+
+
+
+
+/*     const elem = document.getElementById('react-container');
+
+    const items = [
+        "1 lb Salmon",
+        "1 cup Pine Nuts",
+        "2 cups Butter Lettuce",
+        "1 Yellow Squash",
+        "1/2 cup Olive Oil",
+        "3 cloves of Garlic"
+    ]
+    
+    const r = React.createElement(
+        "section",
+        {'id': 'myId'},
+        React.createElement('h1', null, 'Header'),
+        React.createElement(
+            'ul',
+            {'className': 'ingridients'},
+            items.map((ingredient, i) => React.createElement('li', {'key': `${i}`}, ingredient))
+        ),
+        React.createElement(
+            'section',
+            {'className': 'instructions'},
+            React.createElement("h2", null, "Cooking Instructions"),
+            React.createElement("p", null, "Preheat the oven to 350 degrees."),
+            React.createElement("p", null, "Spread the olive oil around a glass baking dish."),
+            React.createElement("p", null, "Add the salmon, garlic, and pine..."),
+            React.createElement("p", null, "Bake for 15 minutes."),
+            React.createElement("p", null, "Add the yellow squash and put..."),
+            React.createElement("p", null, "Remove from oven and let cool for 15 ....")
+        )
+    );
+
+    console.log(r);
+
+    ReactDOM.render(r, elem);
+ */
+
+
+
+
+/*     const elem = document.getElementById('react-container');
+    
+    const r = React.createElement(
+        "section",
+        {'id': 'myId'},
+        React.createElement('h1', null, 'Header'),
+        React.createElement(
+            'ul',
+            {'className': 'ingridients'},
+            React.createElement('li', null, '1 item'),
+            React.createElement('li', null, '2 item'),
+            React.createElement('li', null, '3 item'),
+            React.createElement('li', null, '4 item'),
+            React.createElement('li', null, '5 item'),
+            React.createElement('li', null, '6 item'),
+            React.createElement('li', null, '7 item'),
+        ),
+        React.createElement(
+            'section',
+            {'className': 'instructions'},
+            React.createElement("h2", null, "Cooking Instructions"),
+            React.createElement("p", null, "Preheat the oven to 350 degrees."),
+            React.createElement("p", null, "Spread the olive oil around a glass baking dish."),
+            React.createElement("p", null, "Add the salmon, garlic, and pine..."),
+            React.createElement("p", null, "Bake for 15 minutes."),
+            React.createElement("p", null, "Add the yellow squash and put..."),
+            React.createElement("p", null, "Remove from oven and let cool for 15 ....")
+        )
+    );
+
+    console.log(r);
+
+    ReactDOM.render(r, elem); */
+
+
+
+/*     const elem = document.getElementById('react-container');
+    
+    const r = React.createElement(
+        'ul',
+        null,
+        React.createElement('li', null, '1 item'),
+        React.createElement('li', null, '2 item'),
+        React.createElement('li', null, '3 item'),
+        React.createElement('li', null, '4 item'),
+    );
+
+    console.log(r);
+
+    ReactDOM.render(r, elem); */
+ </script>
+</body>
+</html>
