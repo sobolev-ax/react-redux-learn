@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import AddColorForm from './components/AddColorForm'
+import { v4 } from 'uuid' // id: v4()
+import AddPhoneNumber from './components/AddPhoneNumber'
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
-      <AddColorForm />
-    );
+      <section>
+        <h1>Phone book</h1>
+        <AddPhoneNumber />
+      </section>
+    )
   }
 }
-
-export default App;
