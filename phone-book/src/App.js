@@ -13,6 +13,7 @@ export default class App extends Component {
 
     this.addNumber = this.addNumber.bind(this);
     this.deleteNumber = this.deleteNumber.bind(this);
+    this.ratingNumber = this.ratingNumber.bind(this);
   }
   addNumber(name, phone, color) {
     const contacts = [
@@ -31,12 +32,27 @@ export default class App extends Component {
     const contacts = this.state.contacts.filter((contact) => contact['id'] !== id);
     this.setState({contacts})
   }
+  ratingNumber(id, rating) {
+    const contacts = this.state.contacts.map((contact) => {
+      return (contact['id'] !== id) ?
+        contact :
+        {
+          ...contact,
+          rating
+        }
+    });
+    this.setState({contacts});
+  }
   render() {
-    const {addNumber, deleteNumber} = this;
+    const {addNumber, deleteNumber, ratingNumber} = this;
     const {contacts} = this.state;
     return (
       <section>
-        <PhoneBook deleteNumber={deleteNumber} addNumber={addNumber} contacts={contacts}/>
+        <PhoneBook 
+          ratingNumber={ratingNumber}
+          deleteNumber={deleteNumber}
+          addNumber={addNumber}
+          contacts={contacts}/>
       </section>
     )
   }

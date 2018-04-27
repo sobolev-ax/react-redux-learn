@@ -9,7 +9,7 @@ const contacts = [
         'name': 'Alexandr',
         'phone': '+7 (960) 307-99-32',
         'color': 'green',
-        'rating': '3',
+        'rating': '5',
         'id': '2'
     },{
         'name': 'Dima',

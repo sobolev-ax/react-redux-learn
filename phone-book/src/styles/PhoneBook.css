@@ -17,3 +17,17 @@
     border-radius: 50%;
     margin: 2px;
 }
+
+.star-phone-number {
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 50%;
+    margin: 2px;
+    background-color: grey;
+}
+
+.star-phone-number.selected {
+    background-color: gold;
+}
