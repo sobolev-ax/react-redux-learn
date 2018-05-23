@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import MemberList from './MemberList'
+import ColorList from './ColorList'
+import data from './data'
 
 import logo from './logo.svg';
 import './App.css';
@@ -13,6 +15,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <main>
+          <ColorList colors={data.colors}/>
           <MemberList count={5}/>
         </main>
         <p className="App-intro">

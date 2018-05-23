@@ -74,6 +74,9 @@ class MemberList extends Component {
 
         return (
             <section>
+                <h3>
+                    MemberList
+                </h3>
                 {(loading) ?
                     <span>Loading members...</span> :
                     (members.length) ?
