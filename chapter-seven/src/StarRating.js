@@ -4,7 +4,7 @@ import Star from './Star'
 const StarRating = ({onRate, myId, rating=0, totalStars=5}) => {
     return (
         <section>
-            <h6>Rating:</h6>
+            <h6 title={`Rating: ${rating} of ${totalStars}`}>Rating:</h6>
             {[...Array(totalStars)].map((n, i) =>
                 <Star
                     onRate={onRate}

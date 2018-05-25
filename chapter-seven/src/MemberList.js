@@ -4,7 +4,7 @@ import Clock from './Clock'
 
 const Member = ({ email, picture, name, location }) =>
     <figure>
-        <img src={picture.thumbnail} alt="" />
+        <img src={picture.thumbnail} alt=" " />
         <figcaption>
             <address>
                 <p>
