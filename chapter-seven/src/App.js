@@ -4,6 +4,7 @@ import ColorList from './ColorList'
 import HiddenMessages from './HiddenMessages'
 import CountryList from './CountryList'
 import data from './data'
+import TimelineD3 from './TimelineD3'
 
 import logo from './logo.svg';
 import './App.css';
@@ -17,6 +18,8 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <main>
+          <TimelineD3 data={data.historicDatesForSkiing} name="History of Skiing"/>
+          <hr />
           <CountryList />
           <hr />
           <HiddenMessages />
