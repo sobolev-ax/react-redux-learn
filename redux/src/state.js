@@ -5,7 +5,9 @@ function reducer (state, action) {
     case 'INCREASE_COUNTER':
         return {...state, ...{counter: (state.counter + 1)}};
     case 'RESET_COUNTER':
-    return {...state, ...{counter: 0}};
+        return {...state, ...{counter: 0}};
+    case 'LOAD_ISSUES':
+        return {...state, ...{issues: action.playload}}
     default:
         return state;
     }

@@ -21,3 +21,7 @@ store.dispatch({
 store.dispatch({
     type: 'UNKNOWN'
 });
+store.dispatch({
+    type: 'LOAD_ISSUES',
+    playload: [{id: 1, name: 'First Issue'}, {id: 2, name: 'Second Issue'}]
+});
